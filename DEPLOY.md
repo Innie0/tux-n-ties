@@ -1,22 +1,32 @@
 # How to Deploy Changes
 
-## Quick Deploy (Easiest)
+## 🚀 Easiest Method (Recommended)
 
 After making changes to your code, run:
 
 ```bash
-npm run push
+./quick-push.sh
 ```
 
-This will automatically:
-1. Add all your changes
-2. Commit them
-3. Push to GitHub
-4. Vercel will automatically deploy
+This will:
+1. Ask you what changes you made
+2. Add all your changes
+3. Commit them with your message
+4. Push to GitHub
+5. Vercel will automatically deploy
 
-## Alternative: Use the Script
+**Example:**
+```bash
+$ ./quick-push.sh
+What changes did you make? (Enter a brief description):
+Updated homepage hero image
+🚀 Pushing changes to GitHub...
+✅ Done! Your changes are being deployed to Vercel.
+```
 
-You can also use the push script:
+## Alternative Methods
+
+### Method 2: Use push script with message
 
 ```bash
 ./push.sh "Description of your changes"
@@ -26,6 +36,14 @@ Example:
 ```bash
 ./push.sh "Updated homepage design"
 ```
+
+### Method 3: Use npm script
+
+```bash
+npm run push
+```
+
+(Note: This uses a default message "Update")
 
 ## Manual Method
 

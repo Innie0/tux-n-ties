@@ -11,7 +11,7 @@
     "db:push": "prisma db push",
     "db:generate": "prisma generate",
     "db:seed": "tsx prisma/seed.ts",
-    "push": "git add -A && git commit -m \"Update\" && git push origin main"
+    "push": "node -e \"const msg = process.argv[1] || 'Update'; require('child_process').execSync('git add -A && git commit -m \"' + msg + '\" && git push origin main', {stdio: 'inherit'})\""
   },
   "prisma": {
     "seed": "tsx prisma/seed.ts"
