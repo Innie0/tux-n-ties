@@ -10,7 +10,8 @@
     "postinstall": "prisma generate",
     "db:push": "prisma db push",
     "db:generate": "prisma generate",
-    "db:seed": "tsx prisma/seed.ts"
+    "db:seed": "tsx prisma/seed.ts",
+    "push": "git add -A && git commit -m \"Update\" && git push origin main"
   },
   "prisma": {
     "seed": "tsx prisma/seed.ts"
