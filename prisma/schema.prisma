@@ -1,0 +1,95 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String?
+  password  String
+  role      String   @default("customer") // "customer" or "admin"
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  bookings  Booking[]
+  orders    Order[]
+}
+
+model Product {
+  id          String   @id @default(cuid())
+  name        String
+  description String
+  price       Float
+  rentPrice   Float
+  images      String   // JSON array of image URLs
+  sizes       String   // JSON array of available sizes
+  colors      String   // JSON array of available colors
+  category    String   // e.g., "Classic", "Modern", "Vintage"
+  barcode     String?  @unique // Unique barcode for inventory tracking
+  inStock     Boolean  @default(true)
+  stockCount  Int      @default(1)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  cartItems   CartItem[]
+  orderItems  OrderItem[]
+}
+
+model CartItem {
+  id        String   @id @default(cuid())
+  productId String
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  quantity  Int      @default(1)
+  type      String   // "rent" or "buy"
+  size      String?
+  color     String?
+  sessionId String   // For guest users
+  userId    String?  // For logged-in users
+  createdAt DateTime @default(now())
+}
+
+model Booking {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  date      DateTime
+  time      String   // e.g., "10:00 AM"
+  status    String   @default("pending") // "pending", "confirmed", "completed", "cancelled"
+  notes     String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Order {
+  id          String      @id @default(cuid())
+  userId      String
+  user        User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  total       Float
+  status      String      @default("pending") // "pending", "processing", "completed", "cancelled"
+  type        String      // "rent" or "buy"
+  shippingAddress String?
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+  items       OrderItem[]
+}
+
+model OrderItem {
+  id        String   @id @default(cuid())
+  orderId   String
+  order     Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  productId String
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  quantity  Int
+  price     Float
+  type      String   // "rent" or "buy"
+  size      String?
+  color     String?
+  createdAt DateTime @default(now())
+}
+

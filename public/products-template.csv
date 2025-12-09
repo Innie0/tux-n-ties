@@ -1,0 +1,7 @@
+name,description,price,rentPrice,images,sizes,colors,category,barcode,stockCount,inStock
+Classic Black Tuxedo - Size 42,A timeless black tuxedo perfect for formal events,599.99,149.99,"https://images.unsplash.com/photo-1594938291221-94f18cbb2600?w=800, https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800","42","Black",Classic,1234567890123,5,true
+Modern Navy Tuxedo - Size 44,Contemporary navy blue tuxedo with modern cut,649.99,169.99,"https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800, https://images.unsplash.com/photo-1594938291221-94f18cbb2600?w=800","44","Navy Blue",Modern,1234567890124,3,true
+White Dinner Jacket - Size 40,Elegant white dinner jacket for summer events,549.99,139.99,"https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800, https://images.unsplash.com/photo-1552374196-c4e7ffc6e126?w=800","40","White",Classic,1234567890125,2,true
+
+
+
