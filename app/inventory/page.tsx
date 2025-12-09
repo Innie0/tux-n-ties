@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -28,9 +28,6 @@ export default function InventoryPage() {
     fetchProducts();
   }, []);
 
-  useEffect(() => {
-    filterProducts();
-  }, [products, searchTerm, selectedCategory]);
 
   const fetchProducts = async () => {
     try {
@@ -54,7 +51,7 @@ export default function InventoryPage() {
     }
   };
 
-  const filterProducts = () => {
+  const filterProducts = useCallback(() => {
     // Ensure products is an array before filtering
     if (!Array.isArray(products)) {
       setFilteredProducts([]);
@@ -76,7 +73,11 @@ export default function InventoryPage() {
     }
 
     setFilteredProducts(filtered);
-  };
+  }, [products, searchTerm, selectedCategory]);
+
+  useEffect(() => {
+    filterProducts();
+  }, [filterProducts]);
 
   const categories = ["all", "Classic", "Modern", "Vintage"];
 

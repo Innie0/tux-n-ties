@@ -39,7 +39,7 @@ export async function POST(request: Request) {
 
     // Process each row
     for (let i = 0; i < records.length; i++) {
-      const row = records[i];
+      const row = records[i] as Record<string, string>;
       const rowNumber = i + 2; // +2 because row 1 is header, and arrays are 0-indexed
 
       try {

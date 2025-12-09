@@ -23,7 +23,7 @@ export default function CheckoutSuccessPage() {
             </div>
             <h1 className="text-5xl md:text-6xl mb-6 tracking-normal">Order Confirmed!</h1>
             <p className="text-sm font-normal mb-12 text-black/70 leading-relaxed">
-              Thank you for your order. We'll send you a confirmation email
+              Thank you for your order. We&apos;ll send you a confirmation email
               shortly.
             </p>
           </div>

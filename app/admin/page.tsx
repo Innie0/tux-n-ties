@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 
 interface Product {
@@ -65,11 +65,7 @@ export default function AdminPage() {
     stockCount: "1",
   });
 
-  useEffect(() => {
-    fetchData();
-  }, [activeTab]);
-
-  const fetchData = async () => {
+  const fetchData = useCallback(async () => {
     setLoading(true);
     try {
       if (activeTab === "products") {
@@ -103,7 +99,11 @@ export default function AdminPage() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [activeTab]);
+
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
 
   const handleProductSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -417,7 +417,7 @@ export default function AdminPage() {
                     Optional columns: <strong>description, images, sizes, colors, category, barcode, inStock, stockCount</strong>
                   </p>
                   <p className="text-xs text-gray-600 mb-2">
-                    Separate multiple values with commas (e.g., images: "url1, url2" or sizes: "38, 40, 42")
+                    Separate multiple values with commas (e.g., images: &quot;url1, url2&quot; or sizes: &quot;38, 40, 42&quot;)
                   </p>
                   <a
                     href="/products-template.csv"
@@ -877,7 +877,7 @@ export default function AdminPage() {
                   <li>Click in the barcode field and scan the item</li>
                   <li>The system will automatically find and update the product</li>
                   <li>Stock count will decrease by 1</li>
-                  <li>If stock reaches 0, the item will be marked as "Out of Stock" on the website</li>
+                  <li>If stock reaches 0, the item will be marked as &quot;Out of Stock&quot; on the website</li>
                 </ol>
               </div>
             </div>

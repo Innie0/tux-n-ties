@@ -1,0 +1,15 @@
+// SQLite schema for local development
+// To use this locally, rename it to schema.prisma
+// Or use: DATABASE_URL="file:./dev.db" and keep postgresql provider (won't work)
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+// Copy all models from schema.prisma here for local development
+
